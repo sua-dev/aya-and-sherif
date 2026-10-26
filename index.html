@@ -161,7 +161,6 @@
       60%      { rotate: calc(var(--sway) * 0.55); }
       78%      { rotate: calc(var(--sway) * -0.12); }
     }
-    .done-tulip { animation: sway 6s ease-in-out infinite; --sway: 5deg; transform-origin: 0% 0%; }
     @keyframes drift-down { from { transform: translateY(-30px); } to { transform: none; } }
     @keyframes drift-left { from { transform: translateX(30px); } to { transform: none; } }
     @keyframes drift-right { from { transform: translateX(-30px); } to { transform: none; } }
@@ -281,7 +280,7 @@
   .notice { border-left: 3px solid var(--moss); background: var(--yes-tint); padding: 12px 16px; margin: 0 0 24px; font-size: .95rem; }
 
   .done { text-align: center; }
-  .done-tulip { width: 74px; margin: 0 auto 6px; transform: rotate(-18deg); }
+  .done h3:focus { outline: none; } /* focus is moved here for screen readers; no visible box */
   .done h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(2rem, 5vw, 2.7rem); line-height: 1.1; color: var(--plum); margin: 0 0 14px; }
   .done .joke { font-family: var(--serif); font-style: italic; font-size: 1.35rem; margin: 0 0 12px; }
   .done .small { color: var(--ink-soft); font-size: .95rem; margin: 0 0 28px; }
@@ -501,7 +500,6 @@
           </form>
 
           <div class="done" id="done" hidden aria-live="polite">
-            <img class="done-tulip" src="images/tulip-left.webp" width="600" height="925" loading="lazy" decoding="async" alt="">
             <h3 id="done-title" tabindex="-1"></h3>
             <p class="joke" id="done-joke"></p>
             <p class="small" id="done-detail"></p>
@@ -513,7 +511,8 @@
   </div>
 
   <footer class="footer">
-    <div class="studio-mark" aria-hidden="true">A&S</div>
+    <div class="studio-mark" aria-hidden="true">ES</div>
+    <p class="studio-name">THE EVENT STUDIO</p>
     <p class="studio-tag">Curating moments that last a lifetime.</p>
   </footer>
 </main>
