@@ -290,8 +290,6 @@
   .studio-mark { width: 44px; height: 58px; margin: 0 auto 18px; border-radius: 50%; background: var(--petal); color: var(--plum-deep); display: grid; place-items: center; font-family: var(--serif); font-size: 1.15rem; font-weight: 500; }
   .studio-name { font-family: var(--serif); font-size: 1.5rem; letter-spacing: .14em; margin: 0; font-weight: 400; }
   .studio-tag { margin: 6px 0 0; font-family: var(--serif); font-style: italic; font-size: 1.1rem; opacity: .85; }
-  .host-link { display: inline-block; margin-top: 32px; color: rgba(246,227,214,.6); font-size: .85rem; }
-  .host-link:hover { color: var(--petal); }
 
   /* ================= Host dashboard ================= */
   .host { min-height: 100vh; background: var(--cream); padding: 40px 0 80px; }
@@ -360,7 +358,7 @@
         <p class="spaced">Together with their families,<br>invite you to celebrate</p>
         <hr class="rule">
         <p class="date" aria-label="26 December 2026">26 DEC 26</p>
-        <p class="spaced-italic">Saturday, 5PM</p>
+        <p class="spaced-italic">Saturday, 3PM</p>
         <p class="spaced venue">Hilton Pyramids Golf<br>Dream Land, 6<sup style="font-size:.6em">th</sup> of October</p>
         <a class="rsvp-cta" id="hero-cta" href="#rsvp">RSVP below</a>
         <p class="closed-note" id="hero-closed" hidden></p>
@@ -385,7 +383,7 @@
           <div class="detail">
             <dt>When</dt>
             <dd>
-              <span class="lead">Saturday 26 December 2026, from 5:00 pm</span>
+              <span class="lead">Saturday 26 December 2026, from 3:00 pm</span>
               <span class="note" id="countdown"></span>
             </dd>
           </div>
@@ -515,9 +513,9 @@
   </div>
 
   <footer class="footer">
-    <div class="studio-mark" aria-hidden="true">A&S</div>
+    <div class="studio-mark" aria-hidden="true">ES</div>
+    <p class="studio-name">THE EVENT STUDIO</p>
     <p class="studio-tag">Curating moments that last a lifetime.</p>
-    <a class="host-link" href="#host">Host dashboard</a>
   </footer>
 </main>
 
@@ -604,6 +602,9 @@ var __async = (__this, __arguments, generator) => {
 };
 const CONFIG = {
   // Your Apps Script Web app URL (ends in /exec). Leave empty for preview mode.
+  // Your private dashboard address: your site link + '#' + this word.
+  // Nothing on the page links to it. Change it to anything you like (letters, numbers, dashes).
+  HOST_PAGE: "hosts-hzmg0b",
   SCRIPT_URL: "https://script.google.com/macros/s/AKfycbywPZVeEKFlY-EaXnr5n76wx7B7J-s_zN-4LsYZt-L2jQnKZLqrvxv12HgyISFlrTj8/exec",
   // Optional: link to your Google Sheet, shown on the dashboard.
   SHEET_URL: "https://docs.google.com/spreadsheets/d/1ainOEDk6ZYye8YeONgLNyxhyVrBLQ7rBTMDLJoZduXQ/edit?gid=0#gid=0",
@@ -615,10 +616,10 @@ const CONFIG = {
   PARKING_NOTE: "",
   // When the site is live. Before SITE_OPENS guests see a "coming soon" card;
   // after SITE_CLOSES they see a thank-you card. Leave '' for no limit.
-  // The host dashboard (#host) always works.
+  // The host dashboard always works.
   SITE_OPENS: "",
   SITE_CLOSES: "2027-01-10T00:00:00+02:00",
-  EVENT_START: "2026-12-26T17:00:00+02:00",
+  EVENT_START: "2026-12-26T15:00:00+02:00",
   RSVP_DEADLINE: "2026-12-05T23:59:59+02:00",
   // keep in sync with Code.gs
   MAX_PLUS_ONES: 1,
@@ -1012,7 +1013,7 @@ function downloadCsv() {
   }, 500);
 }
 function route() {
-  const isHost = location.hash === "#host";
+  const isHost = location.hash === "#" + CONFIG.HOST_PAGE;
   $("#invitation").hidden = isHost;
   $("#host").hidden = !isHost;
   if (isHost) {
